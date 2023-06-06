@@ -1,0 +1,19 @@
+{
+  "name": "task4_task_tracker",
+  "version": "1.0.0",
+  "description": "The task tracker is a web application that allows users to keep track of their tasks and manage them effectively. Users can create tasks, set deadlines, add descriptions, and mark tasks as completed. The application provides a user-friendly interface to add, edit, and delete tasks, as well as view them in a list or grid format.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suyogrepale/task4_task_tracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/suyogrepale/task4_task_tracker/issues"
+  },
+  "homepage": "https://github.com/suyogrepale/task4_task_tracker#readme"
+}
