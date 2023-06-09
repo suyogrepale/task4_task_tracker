@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/suyogrepale/task4_task_tracker/issues"
   },
-  "homepage": "https://github.com/suyogrepale/task4_task_tracker#readme"
+  "homepage": "https://github.com/suyogrepale/task4_task_tracker#readme",
+  "devDependencies": {
+    "concurrently": "^8.1.0"
+  }
 }
