@@ -1,8 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 // Create Express app
 const app = express();
+
+// This line is present only to pass the values from axios to express as a json object.
+app.use(express.json());
+app.use(cors());
 
 const tasksRouter = require('./routes/tasks'); // Import the tasks router
 
