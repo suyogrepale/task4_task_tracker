@@ -1,10 +1,10 @@
-import axios from 'axios';
+import {createTask} from '../services/api';
 
 const handleSubmit = async (e) => {
     e.preventDefault();
   
     try {
-      const response = await axios.post('/api/tasks', {
+      const response = await createTask('/api/tasks', {
         title,
         description,
       });

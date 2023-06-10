@@ -26,7 +26,7 @@ app.listen(port, () => {
 });
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/tasktracker', {
+mongoose.connect('mongodb+srv://suyogsbrfiles:5UopwrN3R487PuwN@cluster0.mfjm9p5.mongodb.net/tasktracker', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   //useCreateIndex: true,
