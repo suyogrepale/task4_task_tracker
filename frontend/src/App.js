@@ -4,7 +4,6 @@ import Home from './components/Home';
 import CreateTask from './components/CreateTask';
 import EditTask from './components/EditTask';
 import TaskDetails from './components/TaskDetails';
-import TaskForm from './components/TaskForm';
 
 function App() {
   return (
@@ -16,8 +15,7 @@ function App() {
           <Route path="/edit/:id" element={<EditTask />} />
           <Route path="/details/:id" element={<TaskDetails />} />
         </Routes>
-        <TaskForm />
-      </div>
+        </div>
     </BrowserRouter>
   );
 }

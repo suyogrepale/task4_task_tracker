@@ -44,15 +44,46 @@ router.get('/:id', (req, res) => {
 });
 
 // PUT (update) a specific task by ID
-router.put('/:id', (req, res) => {
-  // TODO: Implement logic to update a task by ID in the database
-  res.send(`Update task with ID: ${req.params.id}`);
+router.put('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title, description } = req.body;
+
+    const task = await Task.findById(id);
+
+    if (!task) {
+      return res.status(404).json({ message: 'Task not found' });
+    }
+
+    task.title = title;
+    task.description = description;
+
+    await task.save();
+
+    res.json(task);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
 });
 
 // DELETE a specific task by ID
-router.delete('/:id', (req, res) => {
-  // TODO: Implement logic to delete a task by ID from the database
-  res.send(`Delete task with ID: ${req.params.id}`);
+router.delete('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const result = await Task.deleteOne({ _id: id });
+
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: 'Task not found' });
+    }
+
+    res.json({ message: 'Task deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+  }
 });
+
 
 module.exports = router;
