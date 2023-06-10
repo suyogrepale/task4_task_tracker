@@ -9,8 +9,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// Set up routes
 const tasksRouter = require('./routes/tasks'); // Import the tasks router
-
 app.use('/api/tasks', tasksRouter); // Use the tasks router for '/api/tasks' routes
 
 // Define a route handler for the root URL
@@ -18,7 +18,6 @@ app.use('/api/tasks', tasksRouter); // Use the tasks router for '/api/tasks' rou
 // Set up server port
 const port = 5000;
 
-// Set up routes
 
 // Start the server
 app.listen(port, () => {
