@@ -4,13 +4,8 @@ const api = axios.create({
   baseURL: 'http://localhost:5000/api',
 });
 
-export const getTasks = (sortField, sortOrder) => {
-  return api.get('/tasks', {
-    params: {
-      sortField,
-      sortOrder,
-    }
-  });
+export const getTasks = () => {
+  return api.get('/tasks');
 };
 
 export const createTask = (taskData) => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { getTasks } from '../services/api';
 import TaskItem from '../components/TaskItem';
 import TaskForm from './TaskForm';
@@ -8,18 +8,39 @@ const Home = () => {
   const [sortField, setSortField] = useState('title');
   const [sortOrder, setSortOrder] = useState('asc');
 
-  const fetchTasks = async () => {
-    try {
-      const response = await getTasks(sortField, sortOrder);
-      setTasks(response.data);
-    } catch (error) {
-      console.error('Error fetching tasks:', error);
-    }
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const response = await getTasks();
+        setTasks(response.data);
+      } catch (error) {
+        console.error('Error fetching tasks:', error);
+      }
+    };
+    fetchTasks();
+  }, [sortField,sortOrder])
+
+  const handleSortFieldChange = (e) => {
+    setSortField(e.target.value);
   };
 
-  useEffect(() => {
-    fetchTasks();
-  }, [tasks, sortField, sortOrder])
+  const handleSortOrderChange = (e) => {
+    setSortOrder(e.target.value);
+  };
+
+  const sortedTasks = useMemo(() => {
+    const copyTasks = [...tasks];
+  
+    copyTasks.sort((a, b) => {
+      if (sortOrder === 'asc') {
+        return a[sortField] > b[sortField] ? 1 : -1;
+      } else {
+        return a[sortField] < b[sortField] ? 1 : -1;
+      }
+    });
+  
+    return copyTasks;
+  }, [tasks, sortField, sortOrder]);
 
   const handleAddTask = (task) => {
     setTasks((prevTasks) => [...prevTasks, task]);
@@ -49,13 +70,7 @@ const Home = () => {
     }
   };
 
-  const handleSortFieldChange = (e) => {
-    setSortField(e.target.value);
-  };
 
-  const handleSortOrderChange = (e) => {
-    setSortOrder(e.target.value);
-  };
 
   return (
     <div>
@@ -71,7 +86,7 @@ const Home = () => {
           <option value="desc">Descending</option>
         </select>
       </div>
-      {tasks.map((task) => (
+      {sortedTasks.map((task) => (
         <TaskItem
           key={task._id}
           task={task}
