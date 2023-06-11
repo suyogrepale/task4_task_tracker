@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getTasks, deleteTask, updateTask } from '../services/api';
+import { getTasks } from '../services/api';
 import TaskItem from '../components/TaskItem';
 import TaskForm from './TaskForm';
 
@@ -8,7 +8,7 @@ const Home = () => {
 
   useEffect(() => {
     fetchTasks();
-  }, []);
+  }, [tasks]);
 
   const fetchTasks = async () => {
     try {
@@ -25,7 +25,7 @@ const Home = () => {
 
   const handleDeleteTask = async (taskId) => {
     try {
-      await deleteTask(taskId);
+      // await deleteTask(taskId);
       setTasks((prevTasks) =>
         prevTasks.filter((task) => task._id !== taskId)
       );
@@ -36,7 +36,7 @@ const Home = () => {
 
   const handleUpdateTask = async (taskId, updatedTask) => {
     try {
-      await updateTask(taskId, updatedTask);
+      // await updateTask(taskId, updatedTask);
       setTasks((prevTasks) =>
         prevTasks.map((task) =>
           task._id === taskId ? { ...task, ...updatedTask } : task
