@@ -4,7 +4,9 @@
   "description": "The task tracker is a web application that allows users to keep track of their tasks and manage them effectively. Users can create tasks, set deadlines, add descriptions, and mark tasks as completed. The application provides a user-friendly interface to add, edit, and delete tasks, as well as view them in a list or grid format.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test"      : "echo \"Error: no test specified\" && exit 1",
+    "backend"   : "cd backend && npm start",
+    "frontend"  : "cd frontend && npm start"
   },
   "repository": {
     "type": "git",
