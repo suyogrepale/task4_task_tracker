@@ -20,4 +20,8 @@ export const updateTask = (taskId, taskData) => {
   return api.put(`/tasks/${taskId}`, taskData);
 };
 
+export const updateTaskCompletion = (taskId, completed) => {
+  return api.put(`/tasks/${taskId}/complete`, { completed });
+};
+
 export default api;

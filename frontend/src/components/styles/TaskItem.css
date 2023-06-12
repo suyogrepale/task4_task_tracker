@@ -1,0 +1,24 @@
+.task-item {
+    margin-bottom: 10px;
+  }
+  
+  .task-item.completed {
+    color: #999;
+  }
+  
+  .task-item h3 {
+    margin-top: 0;
+  }
+  
+  .task-item p {
+    margin-bottom: 5px;
+  }
+  
+  .task-item input[type="checkbox"] {
+    margin-right: 5px;
+  }
+  
+  .task-item button {
+    margin-right: 5px;
+  }
+  

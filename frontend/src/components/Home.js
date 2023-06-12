@@ -7,6 +7,7 @@ const Home = () => {
   const [tasks, setTasks] = useState([]);
   const [sortField, setSortField] = useState('title');
   const [sortOrder, setSortOrder] = useState('asc');
+  const [showCompleted, setShowCompleted] = useState(false);
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -28,19 +29,27 @@ const Home = () => {
     setSortOrder(e.target.value);
   };
 
+  const handleShowCompletedChange = (e) => {
+    setShowCompleted(e.target.checked);
+  };
+
   const sortedTasks = useMemo(() => {
     const copyTasks = [...tasks];
   
     copyTasks.sort((a, b) => {
       if (sortOrder === 'asc') {
-        return a[sortField] > b[sortField] ? 1 : -1;
+        return a[sortField] > b[  sortField] ? 1 : -1;
       } else {
         return a[sortField] < b[sortField] ? 1 : -1;
       }
     });
   
-    return copyTasks;
-  }, [tasks, sortField, sortOrder]);
+    if (showCompleted) {
+      return copyTasks.filter((task) => task.completed);
+    } else {
+      return copyTasks;
+    }
+  }, [tasks, sortField, sortOrder,showCompleted]);
 
   const handleAddTask = (task) => {
     setTasks((prevTasks) => [...prevTasks, task]);
@@ -85,6 +94,14 @@ const Home = () => {
           <option value="asc">Ascending</option>
           <option value="desc">Descending</option>
         </select>
+        <label>
+          Show Completed:
+          <input
+            type="checkbox"
+            checked={showCompleted}
+            onChange={handleShowCompletedChange}
+          />
+        </label>
       </div>
       {sortedTasks.map((task) => (
         <TaskItem
