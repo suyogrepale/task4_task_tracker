@@ -18,7 +18,7 @@ const Home = () => {
       }
     };
     fetchTasks();
-  }, [sortField,sortOrder])
+  }, [])
 
   const handleSortFieldChange = (e) => {
     setSortField(e.target.value);
